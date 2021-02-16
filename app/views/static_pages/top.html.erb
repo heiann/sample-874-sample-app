@@ -1,31 +1,52 @@
 <% provide(:title, "Top") %>
-<div class="jumbotron">
-  <h1>サンプルアプリ</h1>
-  <p>
-    皆さんの手で、この最低限の土台となるアプリケーションから<br>
-    タスク管理機能を持ったアプリケーションへと作り替えていきましょう！
-  </p>
-
-  <p>現在このアプリケーションには、以下の機能が備わっています。</p>
-
-  <ul>
-    <li>ルートURLに対応したトップページ（このページです）</li>
-    <li>ユーザー機能
-      <ol>
-        <li>名前・メールアドレス・パスワード・ログイン認証用のカラムを持ったUserモデル</li>
-        <li>ユーザー新規登録と対応したページ</li>
-      </ol>
-    </li>
-    <li>ログイン機能
-      <ol>
-        <li>セッションによる一時的ログイン機能</li>
-        <li>Cookiesによる永続的ログイン機能</li>
-      </ol>
-    </li>
-  </ul>
-  <p>実質【勤怠チュートリアル第７章】までの機能を持ったアプリケーションとなります。</p>
-  <center>
-    <%= link_to "Sign Up", signup_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to "Log In", login_path, class: "btn btn-lg btn-primary" %>
-  </center>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-7">
+      <div class = "center jumbotyon" id = "top-main">
+        <h1 id ="top-main-title">TaskApp</h1>
+        <p>TaskAppは簡易ToDo管理ツールです。</p>
+        <p>↓↓初めてのご利用↓↓</p>
+        <a class = "btn btn-lg btn-success" href = "/signup">アカウント作成</a>
+        <div style = "margin-top: 10px">
+          <% if !logged_in? %>
+          <%= link_to "ゲストログイン（管理権限）", user_path(1) %>
+          <%= link_to "ゲストログイン（一般権限）",@user_path %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-4">
+        <h1>ログイン</h1>
+        <%= form_with(scope: :session, url:login_path, local: true ) do |f| %>
+          <% if logged_in? %>
+        
+            <%= f.label :email, "メールアドレス", class: "label-login" %>
+            <%= f.email_field :email, class: 'form-control', disabled:true %>
+        
+            <%= f.label :password, class: "label-login"%>
+            <%= f.password_field :password, class: 'form-control', disabled:true %>
+            
+            <%= f.submit " ログイン", class: "btn btn-primary btn-block btn-login", disabled:true  %>
+        
+          <% else %>
+        
+            <%= f.label :email, "メールアドレス", class: "label-login" %>
+            <%= f.email_field :email, class: 'form-control' %>
+        
+            <%= f.label :password, class: "label-login"%>
+            <%= f.password_field :password, class: 'form-control' %>
+        
+            <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+            <%= f.check_box :remember_me, id: "remember_me" %>
+              <span>ログイン情報を記憶する</span>
+            <% end %>
+        
+            <%= f.submit " ログイン", class: "btn btn-primary btn-block btn-login" %>
+              <p>ユーザー登録がまたの場合は<%= link_to "こちら", signup_path %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
