@@ -1,0 +1,30 @@
+<% provide(:title, "Task show") %>
+<h1>タスク詳細</h1>
+<div class = "row">
+  <div class = "col-md-10 col-md-offset-1">
+    <table class = "table table-bordered table-condensed task-table", id = "table-task">
+      <tbody>
+        
+        <tr>
+          <th><%= Task.human_attribute_name :id %></th>
+          <td><%= @task.id %></td>
+        </tr>
+        
+        <tr>
+          <th><%= Task.human_attribute_name :name %></th>
+          <td><%= @task.name %></td>
+        </tr>
+        
+        <tr>
+          <th><%= Task.human_attribute_name :email %></th>
+          <td><%= @task.email %></td>
+        </tr>
+        
+        <tr>
+          <th><%=link_to "編集", edit_task_path(@task.id), class: "btn btn-lg btn-primary" %></th>
+          <th><%=link_to "削除", "#", class: "btn btn-lg btn-danger" %></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% provide(:title, "New Task") %>
+<h1>タスク新規作成</h1>
+<div class = "row">
+  <div class = "col-md-8 col-md-offset-2">
+    <%= form_with(model: @task, url: user_tasks_path(@user), kocal: true) do |f| %>
+    
+    <%= f.label :名称, class: "label-form" %>
+    <%= f.text_field :name, class: "form-control" %>
+    
+    <%= f.label :詳細, class: "label-form" %>
+    <%= f.text_area :description, class: "form-control" %>
+    
+    <div style = "margin-top: 10px">
+     <%= f.submit "新規登録", class: "btn btn-lg btn-primary btn-form" %>
+    </div>
+  <% end %>
+  </div>
+</div>
+  
